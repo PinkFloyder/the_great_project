@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface DressRepositoryImpl extends JpaRepository<Dress, Integer> {
+public interface DressRepository extends JpaRepository<Dress, Integer> {
 
     public List<Dress> getDressesByColorIn(String[] color);
 

@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.DressRepositoryImpl;
+import com.example.demo.dao.DressRepository;
 import com.example.demo.entity.Dress;
 import com.example.demo.entity.Size;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class DressService implements DressServiceImpl{
 
     @Autowired
-    private DressRepositoryImpl dressRepository;
+    private DressRepository dressRepository;
 
     @Override
     public List<Dress> getAllDress() {
@@ -30,22 +30,6 @@ public class DressService implements DressServiceImpl{
     @Override
     public List<Dress> getDressByColor(String[] color) {
         return dressRepository.getDressesByColorIn(color);
-    }
-
-    @Override
-    public List<Dress> getDressBySize(int[] size) {
-        Set<Integer> set = new HashSet<>();
-        List<Dress> allResults = new ArrayList<>();
-        for (int i = 0; i < size.length; i++) {
-            List<Dress> dresses = dressRepository.findDressesBySizesContains(new Size(size[i]));
-            for (Dress dress : dresses) {
-                if (!set.contains(dress.getCatalog_id())) {
-                    set.add(dress.getCatalog_id());
-                    allResults.add(dress);
-                }
-            }
-        }
-        return allResults;
     }
 
     @Override
