@@ -47,4 +47,20 @@ public class DressService implements DressServiceImpl{
         }
         return allResults;
     }
+
+    @Override
+    public List<Dress> getDressBySize(int[] size) {
+        Set<Integer> set = new HashSet<>();
+        List<Dress> allResults = new ArrayList<>();
+        for (int i = 0; i < size.length; i++) {
+            List<Dress> dresses = dressRepository.findDressesBySizesContains(new Size(size[i]));
+            for (Dress dress : dresses) {
+                if (!set.contains(dress.getCatalog_id())) {
+                    set.add(dress.getCatalog_id());
+                    allResults.add(dress);
+                }
+            }
+        }
+        return allResults;
+    }
 }
