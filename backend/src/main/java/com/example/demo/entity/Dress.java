@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,10 +19,13 @@ public class Dress {
     @Column(name = "color")
     private String color;
 
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.DETACH
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.DETACH
             , CascadeType.REFRESH, CascadeType.MERGE })
-    @JoinColumn(name = "catalog_id")
-    private List<Dimensions> dimensions;
+    @JoinTable(name = "helpwithsize"
+            ,joinColumns = @JoinColumn(name = "catalog_id")
+            ,inverseJoinColumns = @JoinColumn(name = "size")
+    )
+    private List<Size> sizes;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.DETACH
             , CascadeType.REFRESH, CascadeType.MERGE })
@@ -58,12 +62,12 @@ public class Dress {
         this.color = color;
     }
 
-    public List<Dimensions> getDimensions() {
-        return dimensions;
+    public List<Size> getSizes() {
+        return sizes;
     }
 
-    public void setDimensions(List<Dimensions> dimensions) {
-        this.dimensions = dimensions;
+    public void setSizes(List<Size> sizes) {
+        this.sizes = sizes;
     }
 
     public List<Picture> getPictures() {
