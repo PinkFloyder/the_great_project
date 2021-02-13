@@ -12,4 +12,6 @@ public interface DressServiceImpl {
 
     public List<Dress> getDressByColor(String[] color);
 
+    public List<Dress> getDressBySize(int[] size);
+
 }
