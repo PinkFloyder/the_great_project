@@ -10,4 +10,6 @@ public interface DressServiceImpl {
 
     public Dress getDressById(int id);
 
+    public List<Dress> getDressByColor(String[] color);
+
 }

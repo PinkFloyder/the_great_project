@@ -21,12 +21,12 @@ public class Dress {
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.DETACH
             , CascadeType.REFRESH, CascadeType.MERGE })
     @JoinColumn(name = "catalog_id")
-    private List<Dimensions> size;
+    private List<Dimensions> dimensions;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.DETACH
             , CascadeType.REFRESH, CascadeType.MERGE })
     @JoinColumn(name = "catalog_id")
-    private List<Picture> picture;
+    private List<Picture> pictures;
 
     @Column(name = "description")
     private String description;
@@ -58,20 +58,20 @@ public class Dress {
         this.color = color;
     }
 
-    public List<Dimensions> getSize() {
-        return size;
+    public List<Dimensions> getDimensions() {
+        return dimensions;
     }
 
-    public void setSize(List<Dimensions> size) {
-        this.size = size;
+    public void setDimensions(List<Dimensions> dimensions) {
+        this.dimensions = dimensions;
     }
 
-    public List<Picture> getPicture() {
-        return picture;
+    public List<Picture> getPictures() {
+        return pictures;
     }
 
-    public void setPicture(List<Picture> picture) {
-        this.picture = picture;
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     public String getDescription() {

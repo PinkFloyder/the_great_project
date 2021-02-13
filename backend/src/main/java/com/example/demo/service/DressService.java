@@ -15,13 +15,16 @@ public class DressService implements DressServiceImpl{
 
     @Override
     public List<Dress> getAllDress() {
-        List<Dress> listAllDress = dressRepository.findAll();
-        return listAllDress;
+        return dressRepository.findAll();
     }
 
     @Override
     public Dress getDressById(int id) {
-        Dress dress = dressRepository.getOne(id);
-        return dress;
+        return dressRepository.getOne(id);
+    }
+
+    @Override
+    public List<Dress> getDressByColor(String[] color) {
+        return dressRepository.getDressesByColorIn(color);
     }
 }
