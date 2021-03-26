@@ -35,4 +35,11 @@ public class MyRestController {
     private List<Dress> getDressBySize(@RequestParam("size") int[] size) {
         return dressService.getDressBySize(size);
     }
+
+    @RequestMapping("/getBySizeAndColor")
+    private List<Dress> getDressBySizeAndColor(@RequestParam("size") int[] size,
+                                               @RequestParam("color") String[] color) {
+        return dressService.getDressBySizeAndColor(size, color);
+    }
+
 }

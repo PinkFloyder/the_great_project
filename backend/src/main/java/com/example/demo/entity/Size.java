@@ -27,4 +27,5 @@ public class Size {
     public void setVal(int val) {
         this.val = val;
     }
+
 }

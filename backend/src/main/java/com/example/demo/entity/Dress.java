@@ -85,5 +85,10 @@ public class Dress {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return String.format("color: %s\n size: %d", color, sizes.get(0).getVal());
+    }
 }
 

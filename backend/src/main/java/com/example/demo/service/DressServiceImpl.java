@@ -6,12 +6,14 @@ import java.util.List;
 
 public interface DressServiceImpl {
 
-    public List<Dress> getAllDress();
+    List<Dress> getAllDress();
 
-    public Dress getDressById(int id);
+    Dress getDressById(int id);
 
-    public List<Dress> getDressByColor(String[] color);
+    List<Dress> getDressByColor(String[] color);
 
-    public List<Dress> getDressBySize(int[] size);
+    List<Dress> getDressBySize(int[] size);
+
+    List<Dress> getDressBySizeAndColor(int[] size, String[] color);
 
 }

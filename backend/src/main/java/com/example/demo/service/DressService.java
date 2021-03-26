@@ -6,10 +6,8 @@ import com.example.demo.entity.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class DressService implements DressServiceImpl{
@@ -36,8 +34,8 @@ public class DressService implements DressServiceImpl{
     public List<Dress> getDressBySize(int[] size) {
         Set<Integer> set = new HashSet<>();
         List<Dress> allResults = new ArrayList<>();
-        for (int i = 0; i < size.length; i++) {
-            List<Dress> dresses = dressRepository.findDressesBySizesContains(new Size(size[i]));
+        for (int j : size) {
+            List<Dress> dresses = dressRepository.findDressesBySizesContains(new Size(j));
             for (Dress dress : dresses) {
                 if (!set.contains(dress.getCatalog_id())) {
                     set.add(dress.getCatalog_id());
@@ -46,5 +44,15 @@ public class DressService implements DressServiceImpl{
             }
         }
         return allResults;
+    }
+
+    @Override
+    public List<Dress> getDressBySizeAndColor(int[] size, String[] color) {
+        List<Dress> dressSize = getDressBySize(size);
+
+        return dressSize.stream()
+                .filter(x -> Arrays.stream(color)
+                        .anyMatch(y -> x.getColor().equals(y)))
+                .collect(Collectors.toList());
     }
 }
